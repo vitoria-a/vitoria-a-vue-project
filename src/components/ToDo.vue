@@ -3,12 +3,12 @@
     <h3>Lista de tarefas</h3>
     <InputText type="text" v-model="value" />
 
-    <Button class="m-3" icon="pi pi-plus" iconPos="center" @click="toSave()" />
+    <Button icon="pi pi-plus" iconPos="center" @click="toSave()" />
     <Button class="p-button-danger" label="Clear List" @click="clearList()" />
 
-    <div v-for="(task, index) in tasks" :key="index">
-      <Checkbox class="m-2" :id="index" :binary="true" v-model="task.checked" />
-      <label class="m-3" :for="index">{{ task.value }}</label>
+    <div class="task-list" v-for="(task, index) in tasks" :key="index">
+      <Checkbox :id="index" :binary="true" v-model="task.checked" />
+      <label class="label-task-name">{{ task.value }}</label>
     </div>
   </div>
 </template>
@@ -42,12 +42,21 @@ export default {
 </script>
 
 <style scoped>
-.m-3 {
+.task-list {
+  justify-content: start;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 400px;
+  margin-left: 37%;
+}
+.p-button {
   margin-left: 10px;
-  margin-right: 10px;
+}
+.label-task-name {
+  margin-left: 10px;
 }
 
-.m-2 {
-  margin-top: 10px;
+.p-checkbox {
 }
 </style>

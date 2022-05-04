@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <ToDo />
+</template>
 
 <script>
 import ToDo from "./components/ToDo.vue";

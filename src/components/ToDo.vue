@@ -55,6 +55,10 @@ export default {
     clearToDo() {
       this.tasks = [];
     },
+    clearTask(task) {
+      var index = this.tasks.indexOf(task);
+      this.tasks.splice(index, 1);
+    },
   },
 };
 </script>

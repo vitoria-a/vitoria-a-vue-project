@@ -18,7 +18,7 @@
       >
         {{ task.newTask }}
       </label>
-      <Button icon="pi pi-pencil" @click="edit" />
+      <Button icon="pi pi-pencil" />
       <Button
         class="p-button-danger"
         icon="pi pi-times"
@@ -54,15 +54,6 @@ export default {
     },
     clearToDo() {
       this.tasks = [];
-    },
-    clearTask(task) {
-      var index = this.tasks.indexOf(task);
-      this.tasks.splice(index, 1);
-    },
-    edit() {
-      this.tasks.put({
-        newTask: this.editTask,
-      });
     },
   },
 };

@@ -1,0 +1,23 @@
+.task-list {
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: 400px;
+    margin-left: 37%;
+}
+
+.p-button {
+    margin-left: 10px;
+}
+
+.label-task-name {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.label-task-name-check {
+    margin-top: 10px;
+    margin-left: 10px;
+    text-decoration: line-through;
+}

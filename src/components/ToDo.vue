@@ -14,15 +14,25 @@
       <Checkbox :binary="true" :id="index" class="c" v-model="task.checked" />
 
       <label
-        :class="[task.checked ? 'label-task-name-check' : 'label-task-name']"
+        class="label-task"
+        :class="[task.checked ? 'label-task-check' : '']"
       >
         {{ task.newTask }}
       </label>
-      <Button icon="pi pi-pencil" />
+      <ConfirmPopup>
+        <template #message="slotProps">
+          <div class="pop-up">
+            <p>{{ slotProps.message.message }}</p>
+            <InputText v-model="newTaskDescription" />
+          </div>
+        </template>
+      </ConfirmPopup>
+
+      <Button icon="pi pi-pencil" @click="editTask($event, index)" />
       <Button
         class="p-button-danger"
         icon="pi pi-times"
-        @click="clearTask(task)"
+        @click="clearTask(index)"
       />
     </div>
   </div>
@@ -35,8 +45,8 @@ export default {
   data() {
     return {
       newTask: "",
-      editTask: "",
       tasks: [],
+      newTaskDescription: "",
     };
   },
 
@@ -55,9 +65,18 @@ export default {
     clearToDo() {
       this.tasks = [];
     },
-    clearTask(task) {
-      var index = this.tasks.indexOf(task);
+    clearTask(index) {
       this.tasks.splice(index, 1);
+    },
+    editTask(event, index) {
+      this.newTaskDescription = this.tasks[index].newTask;
+      this.$confirm.require({
+        target: event.currentTarget,
+        message: "Do you really want to edit?",
+        accept: () => {
+          this.tasks[index].newTask = this.newTaskDescription;
+        },
+      });
     },
   },
 };

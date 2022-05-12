@@ -1,14 +1,14 @@
 <template>
   <div class="todo">
-    <h3>Lista de tarefas</h3>
+    <h3>To-do List</h3>
     <InputText
       placeholder="What do you need to do?"
       type="text"
-      v-model="newTask"
+      v-model.trim="newTask"
     />
 
     <Button icon="pi pi-plus" iconPos="center" @click="save" />
-    <Button class="p-button-danger" label="Clear List" @click="clearToDo" />
+    <Button class="p-button-danger" label="Clear List" @click="clearAll" />
 
     <div :key="index" class="task-list" v-for="(task, index) in tasks">
       <Checkbox :binary="true" :id="index" class="c" v-model="task.checked" />
@@ -22,7 +22,7 @@
       <ConfirmPopup>
         <template #message="slotProps">
           <div class="pop-up">
-            <p>{{ slotProps.message.message }}</p>
+            <p>{{ slotProps.message.titulo }}</p>
             <InputText v-model="newTaskDescription" />
           </div>
         </template>
@@ -62,7 +62,7 @@ export default {
         alert("Insira uma tarefa!");
       }
     },
-    clearToDo() {
+    clearAll() {
       this.tasks = [];
     },
     clearTask(index) {
@@ -72,7 +72,7 @@ export default {
       this.newTaskDescription = this.tasks[index].newTask;
       this.$confirm.require({
         target: event.currentTarget,
-        message: "Do you really want to edit?",
+        titilo: "Do you really want to edit?",
         accept: () => {
           this.tasks[index].newTask = this.newTaskDescription;
         },
